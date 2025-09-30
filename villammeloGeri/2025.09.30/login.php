@@ -1,78 +1,69 @@
 <?php
-    session_start();
-    include("con.php");
+session_start();
+include("database.php"); // Ebben van a $pdo
 
-    //Bejelentkezés
-    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login']))
+// Bejelentkezés
+if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['login'])) 
+{
+    $log_email = trim($_POST['log_email']);
+    $log_passw = $_POST['log_passw'];
+
+    $errors = [];
+
+    // Adatok ellenőrzése
+    if (empty($log_email) || !filter_var($log_email, FILTER_VALIDATE_EMAIL)) 
     {
-        $log_email = trim($_POST['log_email']);
-        $log_passw = $_POST['log_passw'];
+        $errors[] = "Érvényes email cím megadása kötelező!";
+    }
 
-        $errors = [];
+    if (empty($log_passw)) 
+    {
+        $errors[] = "Jelszó megadása kötelező!";
+    }
 
-        //Ellenőrzés, hogy jók-e az adatok
-        if(empty($log_email) || !filter_var($log_email, FILTER_VALIDATE_EMAIL))
+    // Ha nincs hiba → próbáljuk bejelentkeztetni
+    if (empty($errors)) 
+    {
+        $stmt = $pdo->prepare("SELECT * FROM felhasznalok WHERE email = ?");
+        $stmt->execute([$log_email]);
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($log_passw, $user['jelszo_hash'])) 
         {
-            $errors[] = "Érvényes email cím megadása kötelező!";
-        }
+            // Session változók - PROFILKÉP HOZZÁADVA
+            $_SESSION['user_id'] = $user['felhasznalo_id'];
+            $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_name'] = $user['nev'];
+            $_SESSION['user_role'] = $user['szerep'];
+            $_SESSION['profil_kep'] = $user['profil_kep']; // PROFILKÉP BETÖLTÉSE
 
-        if(empty($log_passw))
+            // Utolsó bejelentkezés frissítése
+            $stmt = $pdo->prepare("UPDATE felhasznalok SET utolso_belepes = NOW() WHERE felhasznalo_id = ?");
+            $stmt->execute([$user['felhasznalo_id']]);
+
+            // Naplózás
+            $stmt = $pdo->prepare("
+                INSERT INTO felhasznalo_naplo (felhasznalo_id, ip_cim, session_id, tevekenyseg)
+                VALUES (?, ?, ?, 'Bejelentkezés')
+            ");
+            $stmt->execute([$user['felhasznalo_id'], $_SERVER['REMOTE_ADDR'], session_id()]);
+
+            // Átirányítás főoldalra
+            header("Location: index.php");
+            exit();
+        } 
+
+        else 
         {
-            $errors[] = "Jelszó megadása kötelező!";
-        }
-
-        //No hiba = adat ellenőrzés
-        if(empty($errors))
-        {
-            $email = mysqli_real_escape_string($con, $log_email);
-            $query = "SELECT * FROM felhasznalok WHERE email = '$email'";
-            $result = mysqli_query($con, $query);
-
-            if($result && mysqli_num_rows($result) == 1)
-            {
-                $user = mysqli_fetch_assoc($result);
-
-                //Jelszó ellenőrzés, adatok ellenőrzése
-                if(password_verify($log_passw, $user['jelszo_hash']))
-                {
-                    $_SESSION['user_id'] = $user['felhasznalo_id'];
-                    $_SESSION['user_email'] = $user['email'];
-                    $_SESSION['user_name'] = $user['nev'];
-                    $_SESSION['user_role'] = $user['szerep'];
-
-                    //Utolsó bejelentkezés frissítése
-                    $update_query = "UPDATE felhasznalok SET utolso_belepes = NOW() WHERE felhasznalo_id = " . $user['felhasznalo_id'];
-                    mysqli_query($con, $update_query);
-
-                    //Bejegyzés a bejelentkezésről
-                    $ip = $_SERVER['REMOTE_ADDR'];
-                    $session_id = session_id();
-                    $naplo_query = "INSERT INTO felhasznalo_naplo (felhasznalo_id, ip_cim, session_id, tevekenyseg)
-                                    VALUES('". $user['felhasznalo_id'] ."', '$ip', '$session_id', 'Bejelentkezés')";
-                    
-                    mysqli_query($con, $naplo_query);
-
-                    //Átírányítás a főoldalra
-                    header("Location: index.php");
-                    exit();
-                }
-
-                else
-                {
-                    $errors[] = "Hibás email vagy jelszó!";
-                }
-            }
-            else
-            {
-                $errors[] = "Hibás email vagy jelszó!";
-            }
-        }
-        //Hibák mentése session-be
-        if(!empty($errors))
-        {
-            $_SESSION['login_errors'] = $errors;
+            $errors[] = "Hibás email vagy jelszó!";
         }
     }
+
+    if (!empty($errors)) 
+    {
+        $_SESSION['login_errors'] = $errors;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -88,28 +79,26 @@
         <form method="POST" action="login.php">
             <p>Bejelentkezés</p>
 
-
             <?php
-                //Hibák megjelenítése
-                if(isset($_SESSION['login_errors']))
+            // Hibák megjelenítése
+            if (isset($_SESSION['login_errors'])) 
+            {
+                echo "<div class='error_box'>";
+                foreach ($_SESSION['login_errors'] as $error) 
                 {
-                    echo"<div class='error_box'>";
-                    foreach($_SESSION['login_errors'] as $error)
-                    {
-                        echo"<p class='error'>$error</p>";
-                    }
-                    echo"</div>";
-                    unset($_SESSION['login_errors']);
+                    echo "<p class='error'>" . htmlspecialchars($error) . "</p>";
                 }
+                echo "</div>";
+                unset($_SESSION['login_errors']);
+            }
 
-                //Biztonság kedvéért jelezzük a felhasználónak, hogy sikeresen regisztrált
-                if(isset($_SESSION['success_msg']))
-                {
-                    echo"<div class='success-box'><p class='success'>". $_SESSION['success_msg'] ."</p></div>";
-                    unset($_SESSION['success_msg']); //Csak 1x jelenik meg
-                }
+            // Regisztráció utáni sikerüzenet
+            if (isset($_SESSION['success_msg'])) 
+            {
+                echo "<div class='success-box'><p class='success'>" . htmlspecialchars($_SESSION['success_msg']) . "</p></div>";
+                unset($_SESSION['success_msg']); // csak egyszer jelenjen meg
+            }
             ?>
-
 
             <div class='login_data'>
                 <input type="text" name='log_email' placeholder="Email" required value="<?php echo isset($_POST['log_email']) ? htmlspecialchars($_POST['log_email']) : ''; ?>"><br>
