@@ -6,12 +6,13 @@
 
 - (szakmai) - kódok rendezetebbre tevése. 
 
-- (szakmai)  - webadmin jobbá tétele, hasznosabbá tétele
+- (szakmai)  - Webadminon keresztül több dolgot ellehessen érni, hogy ne kelljen az adatbázisba belépni vagy  azon belül kelljen törölni.
 
 -  Újabb css. Szebb letisztult.
 
 - Fizetés megvalósítása
 
 - Kommentek, igazítása. (csak olyan kommentek jelenjenek meg amiken van szöveges értékelés is.) Szebb desgin (Ne egymás  allat  jelenjenek meg,  hanem gördülékeny elrendezésben jelenjenek meg. (Randomizálva a legjobbak))
+
 
 - 
