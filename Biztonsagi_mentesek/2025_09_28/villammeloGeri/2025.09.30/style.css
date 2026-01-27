@@ -1,0 +1,655 @@
+/* ==========================================================================
+   ALAP STÍLUSOK - Minden elemre vonatkoznak
+   ========================================================================== */
+
+/* Minden elem reszetelése */
+*
+{
+    box-sizing: border-box; /* Padding és border a width-en belül */
+}
+
+/* Oldal alap stílusai */
+body 
+{
+    margin: 0;              /* Nincs külső margó */
+    padding: 0;             /* Nincs belső margó */
+    font-family: 'Segoe UI', Arial, sans-serif; /* Betűtípus család */
+    background-color: #f8f9fa; /* Világos háttérszín */
+}
+
+/* Alap link stílusok */
+a 
+{
+    text-decoration: none;  /* Aláhúzás eltávolítása */
+    color: inherit;         /* Örökli a szülő színét */
+}
+
+
+/* ==========================================================================
+   FŐ MENÜ - Navigációs sáv
+   ========================================================================== */
+
+/* Fő menü konténer */
+.menu 
+{
+    display: flex;                      /* Flexbox elrendezés */
+    justify-content: space-between;     /* Elementek szétszórása */
+    align-items: center;                /* Függőleges középre igazítás */
+    padding: 20px 5%;                   /* Belső margó: 15px felül-alul, 5% oldalt */
+    background-color: rgb(54, 77, 112); /* Sötétkék háttér */
+    color: white;                       /* Fehér szöveg */
+    position: fixed;                    /* Rögzített pozíció */
+    top: 0; left: 0; right: 0;          /* Teljes szélesség a tetején */
+    z-index: 1000;                      /* Magas réteg minden fölé */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Enyhe árnyék */
+}
+
+
+/* ==========================================================================
+   BAL OLDALI RÉSZ - Logó és brand
+   ========================================================================== */
+
+/* Bal oldali konténer */
+.menu_left 
+{
+    flex: 1;                            /* 1 rész a rendelkezésre álló helyből */
+    display: flex;                      /* Flexbox elrendezés */
+    justify-content: flex-start;        /* Balra igazítás */
+}
+
+/* Logó elem csoport */
+.logo 
+{
+    display: flex;                      /* Flexbox elrendezés */
+    align-items: center;                /* Függőleges középre igazítás */
+    gap: 10px;                         /* 10px térköz az elemek között */
+    font-size: 1.5em;                  /* Nagyobb betűméret */
+    font-weight: bold;                 /* Félkövér szöveg */
+}
+
+/* Logó kép */
+.logo img 
+{
+    height: 40px;                      /* Rögzített magasság */
+    width: auto;                       /* Szélesség automatikus arányban */
+}
+
+
+/* ==========================================================================
+   KÖZÉPSŐ RÉSZ - Navigációs linkek
+   ========================================================================== */
+
+/* Középső navigációs konténer */
+.menu_center 
+{
+    flex: 2;                            /* 2 rész a rendelkezésre álló helyből */
+    display: flex;                      /* Flexbox elrendezés */
+    justify-content: center;            /* Vízszintes középre igazítás */
+    align-items: center;                /* Függőleges középre igazítás */
+    gap: 30px;                         /* 30px térköz a linkek között */
+}
+
+/* Navigációs linkek és gombok alapstílusa */
+.menu_center a, 
+.menu_center .dropdown-btn 
+{
+    padding: 10px 20px;                /* Belső margó */
+    border-radius: 25px;               /* Kerekített sarkok */
+    font-weight: 500;                  /* Közepes vastagságú betű */
+    transition: all 0.3s ease;         /* Sima átmenet minden tulajdonságra */
+    color: white;                      /* Fehér szöveg */
+    background: none;                  /* Átlátszó háttér */
+    border: none;                      /* Keret eltávolítása */
+    cursor: pointer;                   /* Mutató kurzor */
+    font-size: 15px;                   /* Alap betűméret */
+}
+
+/* Navigációs elemek hover állapota */
+.menu_center a:hover,
+.menu_center .dropdown-btn:hover 
+{
+    background: rgba(255, 255, 255, 0.2); /* Átlátszó fehér háttér */
+    transform: translateY(-2px);       /* Enyhe felemelkedés */
+}
+
+/* ==========================================================================
+   KATEGÓRIA MENÜ - Hiányzó stílusok
+   ========================================================================== */
+
+/* Kategória menü konténer */
+.menu_category 
+{
+    position: relative;
+    display: inline-block;
+}
+
+/* Kategória legördülő menü */
+.menu_category_DropDown 
+{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    z-index: 1001;
+    margin-top: 10px;
+    padding: 10px 0;
+}
+
+/* Kategória menü linkjei */
+.menu_category_DropDown a 
+{
+    color: #333;
+    padding: 12px 16px;
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s;
+    text-align: left;
+    font-size: 14px;
+}
+
+.menu_category_DropDown a:last-child 
+{
+    border-bottom: none;
+}
+
+.menu_category_DropDown a:hover 
+{
+    background: #e9ecef;
+}
+
+/* Menü megjelenítése */
+.menu_category_DropDown.show 
+{
+    display: block;
+}
+
+/* Kategória gomb stílusa */
+.category-btn 
+{
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.category-btn:hover 
+{
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================================================
+   JOBB OLDALI RÉSZ - Felhasználói interfész
+   ========================================================================== */
+
+/* Jobb oldali konténer */
+.menu_right 
+{
+    flex: 1;                            /* 1 rész a rendelkezésre álló helyből */
+    display: flex;                      /* Flexbox elrendezés */
+    justify-content: flex-end;          /* Jobbra igazítás */
+    align-items: center;                /* Függőleges középre igazítás */
+    gap: 20px;                         /* 20px térköz az elemek között */
+}
+
+
+/* ==========================================================================
+   BEJELENTKEZETT FELHASZNÁLÓ - Profil menü
+   ========================================================================== */
+
+/* Üdvözlő szöveg */
+.user_welcome 
+{
+    font-weight: 500;                  /* Közepes vastagságú betű */
+}
+
+/* Profil menü konténer */
+.menu_p {
+    position: relative;                 /* Relatív pozíció a legördülőhöz */
+}
+
+/* Profil kép gomb */
+.profile-btn 
+{
+    background: none;                   /* Átlátszó háttér */
+    border: none;                       /* Keret eltávolítása */
+    cursor: pointer;                    /* Mutató kurzor */
+    padding: 0;                      /* Kis belső margó */
+    border-radius: 50%;                 /* Tökéletes kör alak */
+    transition: background-color 0.3s;  /* Háttérszín átmenet */
+}
+
+/* Profil gomb hover állapota */
+.profile-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Átlátszó fehér háttér */
+}
+
+/* Profil kép */
+.profile-btn img 
+{
+    margin: 0;
+    padding: 0px;
+    width: 50px;                       /* Rögzített szélesség */
+    height: 50px;                      /* Rögzített magasság */
+    border-radius: 50%;                 /* Tökéletes kör alak */
+    object-fit: cover;                  /* Kép arányainak megtartása */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Átlátszó fehér keret */
+}
+
+
+/* ==========================================================================
+   NEM BEJELENTKEZETT FELHASZNÁLÓ - Bejelentkezés/Regisztráció
+   ========================================================================== */
+
+/* Hitelesítési linkek konténer */
+.auth_links 
+{
+    display: flex;                      /* Flexbox elrendezés */
+    gap: 15px;                         /* 15px térköz a gombok között */
+}
+
+/* Bejelentkezés és regisztráció gombok alapstílusa */
+.login-btn, .register-btn 
+{
+    padding: 10px 20px;                /* Belső margó */
+    border-radius: 25px;               /* Kerekített sarkok */
+    font-weight: 500;                  /* Közepes vastagságú betű */
+    transition: all 0.3s ease;         /* Sima átmenet minden tulajdonságra */
+}
+
+/* Bejelentkezés gomb specifikus stílus */
+.login-btn 
+{
+    background: rgb(23, 38, 59);
+    border: 1px solid rgb(16, 25, 39);
+}
+
+/* Regisztráció gomb specifikus stílus */
+.register-btn 
+{
+    background: rgb(23, 38, 59);
+    border: 1px solid rgb(16, 25, 39);
+}
+
+/* Bejelentkezés gomb hover */
+.login-btn:hover 
+{
+    background: rgb(50, 83, 128);
+    border-color: rgb(78, 125, 192);
+}
+
+/* Regisztráció gomb hover */
+.register-btn:hover 
+{
+    background: rgb(50, 83, 128);
+    border-color: rgb(78, 125, 192);
+}
+
+
+/* ==========================================================================
+   PROFIL LEGÖRDÜLŐ MENÜ - Felhasználói menü
+   ========================================================================== */
+
+/* Legördülő menü konténer */
+.menu_p_DropDown 
+{
+    display: none;                      /* Alapértelmezetten rejtve */
+    position: absolute;                 /* Abszolút pozíció */
+    top: 100%;                         /* A gomb alatt */
+    right: 0;                          /* Jobb oldalra igazítás */
+    background: white;                  /* Fehér háttér */
+    min-width: 220px;                   /* Minimális szélesség */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Árnyék hatás */
+    border-radius: 10px;                /* Kerekített sarkok */
+    z-index: 1001;                      /* Nagyon magas réteg */
+    margin-top: 10px;                   /* Távolság a gombtól */
+}
+
+/* Legördülő menü linkjei */
+.menu_p_DropDown a 
+{
+    color: #333;                       /* Sötét szürke szöveg */
+    padding: 12px 16px;                /* Belső margó */
+    display: flex;                      /* Flexbox elrendezés */
+    align-items: center;                /* Függőleges középre igazítás */
+    border-bottom: 1px solid #f0f0f0;  /* Világos elválasztó vonal */
+    transition: background-color 0.3s;  /* Háttérszín átmenet */
+}
+
+/* Első link (profil info) */
+.menu_p_DropDown a:first-child 
+{
+    background: #f8f9fa;               /* Világos háttér */
+    font-weight: bold;                 /* Félkövér szöveg */
+}
+
+/* Utolsó link (kijelentkezés) */
+.menu_p_DropDown a:last-child 
+{
+    border-bottom: none;               /* Nincs elválasztó vonal */
+    color: #dc3545;                    /* Piros szöveg */
+}
+
+/* Link hover állapota */
+.menu_p_DropDown a:hover 
+{
+    background: #e9ecef;               /* Világosszürke háttér */
+}
+
+/* Menü megjelenítése (JavaScript hozzáadja) */
+.menu_p_DropDown.show 
+{
+    display: block;                     /* Láthatóvá teszi a menüt */
+}
+
+/* Kis profilkép a menüben */
+.menu_p_DropDown a img 
+{
+    width: 20px;                       /* Kis méret */
+    height: 20px;                      /* Kis méret */
+    border-radius: 50%;                 /* Kör alak */
+    object-fit: cover;                  /* Kép arányainak megtartása */
+    margin-right: 10px;                 /* Térköz a szövegtől jobbra */
+}
+
+
+/* ==========================================================================
+   HŐS SZAKASZ - Kép slider a főoldalon
+   ========================================================================== */
+
+/* Fő képszakasz */
+.hero_section 
+{
+    margin-top: 80px;                  /* Távolság a menütől */
+    position: relative;                 /* Relatív pozíció a gyermekekhez */
+}
+
+/* Kép slider konténer */
+.image_slider 
+{
+    position: relative;                 /* Relatív pozíció */
+    height: 500px;                      /* Rögzített magasság */
+    overflow: hidden;                   /* Túlcsordulás elrejtése */
+}
+
+/* Egyedi slider képek */
+.slider-image 
+{
+    position: absolute;                 /* Abszolút pozíció egymás föött */
+    top: 0; left: 0;                    /* Bal felső sarok */
+    width: 100%; height: 100%;          /* Teljes kitöltés */
+    object-fit: cover;                  /* Kép arányainak megtartása */
+    opacity: 0;                         /* Alapértelmezetten átlátszó */
+    transition: opacity 0.5s ease;      /* Átlátszóság átmenet */
+}
+
+/* Aktív slider kép */
+.slider-image.active 
+{
+    opacity: 1;                         /* Teljesen látható */
+}
+
+/* Slider navigációs gombok */
+.slider-btn 
+{
+    position: absolute;                 /* Abszolút pozíció */
+    top: 50%;                          /* Függőleges középen */
+    transform: translateY(-50%);        /* Pontos középre igazítás */
+    background: rgba(0,0,0,0.5);       /* Átlátszó fekete háttér */
+    color: white;                       /* Fehér szöveg */
+    border: none;                       /* Keret eltávolítása */
+    padding: 15px;                      /* Belső margó */
+    cursor: pointer;                    /* Mutató kurzor */
+    font-size: 24px;                    /* Nagy betűméret */
+    z-index: 10;                        /* Előtérbe hozás */
+}
+
+/* Előző gomb pozíciója */
+.prev-btn 
+{ 
+    left: 20px;                         /* 20px balra */
+}
+
+/* Következő gomb pozíciója */
+.next-btn 
+{ 
+    right: 20px;                        /* 20px jobbra */
+}
+
+/* Slider pont indikátorok */
+.slider-dots 
+{
+    position: absolute;                 /* Abszolút pozíció */
+    bottom: 20px;                       /* 20px alulról */
+    left: 50%;                         /* Vízszintes középen */
+    transform: translateX(-50%);        /* Pontos középre igazítás */
+    display: flex;                      /* Flexbox elrendezés */
+    gap: 10px;                         /* 10px térköz a pontok között */
+}
+
+/* Egyedi pont */
+.dot 
+{
+    width: 12px;                        /* Kis szélesség */
+    height: 12px;                       /* Kis magasság */
+    border-radius: 50%;                 /* Tökéletes kör */
+    background: rgba(255,255,255,0.5);  /* Átlátszó fehér */
+    cursor: pointer;                    /* Mutató kurzor */
+}
+
+/* Aktív pont */
+.dot.active 
+{
+    background: white;                  /* Tiszta fehér */
+}
+
+
+/* ==========================================================================
+   FŐ TARTALOM - A menü és slider alatti rész
+   ========================================================================== */
+
+/* Tartalom konténer */
+.content 
+{
+    padding: 50px 5%;                   /* Belső margó: 50px felül-alul, 5% oldalt */
+    text-align: center;                 /* Szöveg középre igazítása */
+}
+
+/* Bejelentkezett és vendég üdvözlő konténerek */
+.welcome_user, .welcome_guest 
+{
+    max-width: 1200px;                  /* Maximális szélesség */
+    margin: 0 auto;                     /* Középre igazítás */
+}
+
+/* Fő címek */
+.welcome_user h1, .welcome_guest h1 
+{
+    color: #333;                       /* Sötét szürke szöveg */
+    margin-bottom: 20px;                /* Alsó margó */
+    font-size: 2.5em;                   /* Nagy betűméret */
+}
+
+/* Bekezdések */
+.welcome_user p, .welcome_guest p 
+{
+    color: #666;                       /* Közepes szürke szöveg */
+    font-size: 1.2em;                   /* Kissé nagyobb betűméret */
+    margin-bottom: 30px;                /* Alsó margó */
+    line-height: 1.6;                   /* Sorköz */
+}
+
+
+/* ==========================================================================
+   FUNKCIÓ KÁRTYÁK - Szolgáltatás bemutatása
+   ========================================================================== */
+
+/* Kártyák konténer */
+.features 
+{
+    display: grid;                      /* Grid elrendezés */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Rugalmas oszlopok */
+    gap: 30px;                         /* 30px térköz a kártyák között */
+    margin: 40px 0;                     /* 40px margó felül-alul */
+}
+
+/* Egyedi funkció kártya */
+.feature 
+{
+    padding: 30px;                      /* Belső margó */
+    background: white;                  /* Fehér háttér */
+    border-radius: 10px;                /* Kerekített sarkok */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Enyhe árnyék */
+}
+
+/* Kártya címe */
+.feature h3 
+{
+    color: #333;                       /* Sötét szürke szöveg */
+    margin-bottom: 15px;                /* Alsó margó */
+}
+
+/* Kártya szövege */
+.feature p 
+{
+    color: #666;                       /* Közepes szürke szöveg */
+    margin: 0;                          /* Nincs margó */
+}
+
+
+/* ==========================================================================
+   GOMBOK - Cselekvő gombok stílusai
+   ========================================================================== */
+
+/* Gombok konténer */
+.action_buttons 
+{
+    display: flex;                      /* Flexbox elrendezés */
+    gap: 20px;                         /* 20px térköz a gombok között */
+    justify-content: center;            /* Középre igazítás */
+    flex-wrap: wrap;                    /* Töres kis képernyőn */
+}
+
+/* Alap gomb stílus */
+.btn 
+{
+    padding: 12px 30px;                 /* Belső margó */
+    border-radius: 25px;                /* Kerekített sarkok */
+    font-weight: 500;                   /* Közepes vastagságú betű */
+    text-decoration: none;              /* Aláhúzás eltávolítása */
+    transition: all 0.3s ease;          /* Sima átmenet minden tulajdonságra */
+    border: none;                       /* Keret eltávolítása */
+    cursor: pointer;                    /* Mutató kurzor */
+    font-size: 16px;                    /* Alap betűméret */
+}
+
+/* Elsődleges gomb (kék) */
+.btn.primary 
+{
+    background: #007bff;                /* Kék háttér */
+    color: white;                       /* Fehér szöveg */
+}
+
+/* Elsődleges gomb hover */
+.btn.primary:hover 
+{
+    background: #0056b3;                /* Sötétebb kék háttér */
+    transform: translateY(-2px);        /* Enyhe felemelkedés */
+}
+
+/* Másodlagos gomb (szürke) */
+.btn.secondary 
+{
+    background: #6c757d;                /* Szürke háttér */
+    color: white;                       /* Fehér szöveg */
+}
+
+/* Másodlagos gomb hover */
+.btn.secondary:hover 
+{
+    background: #545b62;                /* Sötétebb szürke háttér */
+    transform: translateY(-2px);        /* Enyhe felemelkedés */
+}
+
+
+/* ==========================================================================
+   RESZPONZÍV DESIGN - Mobilos optimalizálás
+   ========================================================================== */
+
+/* Tablet és mobil nézet (768px és kisebb) */
+@media (max-width: 768px) 
+{
+    /* Menü oszlopos elrendezése */
+    .menu 
+    {
+        flex-direction: column;         /* Függőleges elrendezés */
+        gap: 15px;                     /* 15px térköz az elemek között */
+        padding: 15px;                  /* Kisebb belső margó */
+    }
+    
+    /* Navigációs linkek közelebb egymáshoz */
+    .menu_center 
+    {
+        gap: 15px;                     /* Kisebb térköz */
+    }
+    
+    /* Kártyák egymás alatt */
+    .features 
+    {
+        grid-template-columns: 1fr;     /* Egy oszlop */
+    }
+    
+    /* Gombok egymás alatt */
+    .action_buttons 
+    {
+        flex-direction: column;         /* Függőleges elrendezés */
+        align-items: center;            /* Középre igazítás */
+    }
+}
+
+/* ==========================================================================
+    MUNKÁK RENDEZÉSE
+   ========================================================================== */
+
+.job-content
+{
+    text-align: center;
+}
+
+   .images {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+}
+
+.job-card {
+    display: flex;
+    flex-direction: column;  /* kép felül, szöveg alul */
+    align-items: center;     /* középre igazítja a szöveget a képhez */
+    gap: 8px;                /* kis térköz a kép és a szöveg között */
+}
+
+.job-card img {
+    width: 150px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.job-card p {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+}
+
