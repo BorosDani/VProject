@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2025.09.08 - 2025.09.10 - xx:xx -----> Csapattagok véglegesítve, projekt feladat megtervezése, adatbázis megtervezése (Dorina, Dani, Geri).
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2025.09.12 - 9:50-10:35 - Adatbázis tervrajzának megvalósítása nem sikerült (Kléber Gegely), Újra gondolás és megtervezése sikerrel (Dani,Dorina). 
+2025.09.12 - 18:20 -----> Ideiglenes adatbázis megtervezve; Weboldal megkezdve (Dorina, Dani).
+2025.09.12 - 19:10 -----> Feltöltve a weboldal a tárhelyre, és elérhető a villammelo.hu címmel (Dani).
+2025.09.12 - 22:44 -----> Adatbázis nagy része megvalósítva, hibák helyre állítása az adatbázisban (Dorina).
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2025.09.13 - 15:xx-17:00 - Főoldal módosítva: "lábrész" => alap elérhetőségek, kategóriák legördülő menü [Nincs hozzáadva a tényleges oldalhoz = próba oldal] (Geri)
+2025.09.13 - 15:xx-20:00 - Kész az adatbázis összekötés, regisztráció és a bejelentkezés + alapszintű design hozzáadva, később módosul [Nincs feltöltve a tárhelyre] (Dani)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2025.09.19. - 8:00 - 9:40 - Specifikáció megírása/befejezése. (Dorina)
+2025.09.19. - 8:00 - 9:40 - Főoldal design tervezése. (Kléber Gergely) 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2025.09.28 - 17:00 - 23:00 - Főoldal, illetve annak pontjai tervezése, dizájnolása. Legördülő listák létrehozása, képekkel és szövegekkel kiegészítve a főoldal + láthatóság korlátozás (regisztált, nem regisztrált) [Dani]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2025.09.30 - xx:xx - xx:xx - Dizájn állítások a főoldalon, új oldalak elkezdve (profil.php, jobs.php), illetve ftp csatlakozás tanulmányozása a munka megkönnyítése érdekében. (Dani, Dorina, Geri)
+2025.10.02 - 18:00 - 20:00 - Profil.php-ban működik a szerkesztés (profilkép feltöltése, név, email, jelszó, telefonszám, cim megváltoztatása), az oldalon színek változtatva[opcionális a megtartás]. (Dani)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2025.10.05 - 15:30 - 17:00 - Style.css-ben a bejelentkezésre illetve a regisztrációra készítve lett dizájn. (Dani)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
