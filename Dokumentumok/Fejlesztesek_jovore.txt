@@ -15,4 +15,5 @@
 - Kommentek, igazítása. (csak olyan kommentek jelenjenek meg amiken van szöveges értékelés is.) Szebb desgin (Ne egymás  allat  jelenjenek meg,  hanem gördülékeny elrendezésben jelenjenek meg. (Randomizálva a legjobbak))
 
 
-- 
+- Munkák kedvencnek tételének lehetőségge. Hogy lehessen válogatni a felhasználónak.
+
