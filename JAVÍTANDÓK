@@ -1,5 +1,0 @@
------------------- Javítandó ------------------
-
-- Munkák megtekintése teljes átgondolása [work.php] (dizájn, profilkép ha nincs nem tölti be normálisan a default.png-t,felépítés stb...).
-- Munka feltöltés [workUpload.php] (Ne email beírás legyen, hanem megjelenítési opció, szintén igaz a telefonszámra is).
-- Jelentkezéseim befejezése [jelentkezeseim.php].
